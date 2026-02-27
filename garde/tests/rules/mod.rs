@@ -3,6 +3,7 @@ mod allow_unvalidated;
 mod alphanumeric;
 mod ascii;
 mod contains;
+mod crate_name;
 mod credit_card;
 mod custom;
 mod dive;

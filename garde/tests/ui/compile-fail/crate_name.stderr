@@ -1,0 +1,47 @@
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `garde_as_guardian`
+ --> tests/ui/compile-fail/crate_name.rs
+  |
+  | #[garde(crate = "garde_as_guardian")]
+  |                 ^^^^^^^^^^^^^^^^^^^ use of unresolved module or unlinked crate `garde_as_guardian`
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `garde_as_guardian`
+ --> tests/ui/compile-fail/crate_name.rs
+  |
+  | #[garde(crate = "garde_as_guardian")]
+  |                 ^^^^^^^^^^^^^^^^^^^ use of unresolved module or unlinked crate `garde_as_guardian`
+  |
+  = help: if you wanted to use a crate named `garde_as_guardian`, use `cargo add garde_as_guardian` to add it to your `Cargo.toml`
+help: consider importing one of these modules
+  |
+3 + use std::error;
+  |
+3 + use garde::error;
+  |
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `garde_as_guardian`
+ --> tests/ui/compile-fail/crate_name.rs
+  |
+  | #[garde(crate = "garde_as_guardian")]
+  |                 ^^^^^^^^^^^^^^^^^^^ use of unresolved module or unlinked crate `garde_as_guardian`
+  |
+  = help: if you wanted to use a crate named `garde_as_guardian`, use `cargo add garde_as_guardian` to add it to your `Cargo.toml`
+help: consider importing this module
+  |
+3 + use garde::rules::ascii;
+  |
+
+error[E0223]: ambiguous associated type
+ --> tests/ui/compile-fail/crate_name.rs
+  |
+  | #[derive(garde::Validate)]
+  |          ^^^^^^^^^^^^^^^
+  |
+  = note: this error originates in the derive macro `garde::Validate` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0433]: failed to resolve: use of unresolved module or unlinked crate `garde_as_guardian`
+ --> tests/ui/compile-fail/crate_name.rs
+  |
+  | #[garde(crate = "garde_as_guardian")]
+  |                 ^^^^^^^^^^^^^^^^^^^ use of unresolved module or unlinked crate `garde_as_guardian`
+  |
+  = help: if you wanted to use a crate named `garde_as_guardian`, use `cargo add garde_as_guardian` to add it to your `Cargo.toml`

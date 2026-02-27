@@ -1,0 +1,14 @@
+---
+source: garde/tests/./rules/crate_name.rs
+expression: snapshot
+---
+TestNested {
+    test: Test {
+        field: "😂",
+    },
+    tuple: TestTuple(
+        "😂",
+    ),
+}
+test.field: not ascii
+tuple[0]: not ascii

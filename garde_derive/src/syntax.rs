@@ -6,7 +6,7 @@ use syn::parse::Parse;
 use syn::punctuated::Punctuated;
 use syn::spanned::Spanned;
 use syn::token::As;
-use syn::{DeriveInput, Token, Type};
+use syn::{DeriveInput, LitStr, Token, Type};
 
 use crate::model;
 use crate::model::List;
@@ -105,6 +105,12 @@ impl Parse for model::Attr {
                 let content;
                 syn::parenthesized!(content in input);
                 Ok(model::Attr::Custom(content.parse()?))
+            }
+            "crate" => {
+                let _equal_sign: syn::token::Eq = input.parse()?;
+                // Consistent with serde's `crate` attribute
+                let path_lit: LitStr = input.parse()?;
+                Ok(model::Attr::CrateName(path_lit.parse()?))
             }
             _ => Err(syn::Error::new(ident.span(), "unrecognized attribute")),
         }

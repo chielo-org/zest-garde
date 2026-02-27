@@ -176,12 +176,14 @@ fn is_unary_struct(k: &model::ValidateKind) -> bool {
 fn get_options(attrs: &[(Span, model::Attr)]) -> model::Options {
     let mut options = model::Options {
         allow_unvalidated: false,
+        crate_name: syn::parse_quote!(::garde),
     };
 
     for (_, attr) in attrs {
         match attr {
             model::Attr::Context(..) => {}
             model::Attr::AllowUnvalidated => options.allow_unvalidated = true,
+            model::Attr::CrateName(crate_name) => options.crate_name.clone_from(crate_name),
             _ => {}
         }
     }
