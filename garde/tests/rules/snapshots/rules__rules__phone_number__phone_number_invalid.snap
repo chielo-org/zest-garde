@@ -30,9 +30,9 @@ field: not a valid phone number: invalid country code
 inner[0]: not a valid phone number: invalid country code
 
 Test {
-    field: "A012",
+    field: "012",
     inner: [
-        "A012",
+        "012",
     ],
 }
 field: not a valid phone number: invalid country code
@@ -46,5 +46,3 @@ Test {
 }
 field: not a valid phone number: not a number
 inner[0]: not a valid phone number: not a number
-
-

@@ -46,8 +46,8 @@ fn phone_number_invalid() {
                 inner: &["00642926829"]
             },
             Test {
-                field: "A012",
-                inner: &["A012"]
+                field: "012",
+                inner: &["012"]
             },
             Test {
                 field: "TEXT",

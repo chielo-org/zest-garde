@@ -1,2 +1,2 @@
-#[path = "./rules/mod.rs"]
+#[path = "rules/mod.rs"]
 mod rules;
