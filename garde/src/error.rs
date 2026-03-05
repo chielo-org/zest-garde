@@ -93,6 +93,12 @@ impl std::fmt::Display for Error {
 
 impl std::error::Error for Error {}
 
+impl<T: AsRef<str>> From<T> for Error {
+    fn from(value: T) -> Self {
+        Self::new(value.as_ref())
+    }
+}
+
 #[derive(Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct Path {
     components: List<(Kind, CompactString)>,

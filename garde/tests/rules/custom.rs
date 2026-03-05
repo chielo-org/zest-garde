@@ -12,7 +12,7 @@ struct Test<'a> {
     a: &'a str,
     #[garde(custom(|value: &str, ctx: &Context| {
         if value != ctx.needle {
-            return Err(garde::Error::new(format!("`b` is not equal to {}", ctx.needle)));
+            return Err(format!("`b` is not equal to {}", ctx.needle).into());
         }
         Ok(())
     }))]
@@ -21,7 +21,7 @@ struct Test<'a> {
     inner_a: &'a [&'a str],
     #[garde(inner(custom(|value: &str, ctx: &Context| {
         if value != ctx.needle {
-            return Err(garde::Error::new(format!("`b` is not equal to {}", ctx.needle)));
+            return Err(format!("`b` is not equal to {}", ctx.needle).into());
         }
         Ok(())
     })))]
@@ -33,14 +33,14 @@ struct Test<'a> {
 
 fn custom_validate_struct(test: &Test, _ctx: &Context) -> Result<(), garde::Error> {
     if test.a != test.uses_ctx {
-        return Err(garde::Error::new("`a` is not equal to `uses_ctx`"));
+        return Err("`a` is not equal to `uses_ctx`".into());
     }
     Ok(())
 }
 
 fn custom_validate_fn(value: &str, ctx: &Context) -> Result<(), garde::Error> {
     if value != ctx.needle {
-        return Err(garde::Error::new(format!("not equal to {}", ctx.needle)));
+        return Err(format!("not equal to {}", ctx.needle).into());
     }
     Ok(())
 }
@@ -84,7 +84,7 @@ fn custom_invalid() {
 #[garde(custom(custom_validate_multi))]
 #[garde(custom(|multi: &Multi, ctx: &Context| {
     if multi.inner.iter().any(|&s| s != ctx.needle) {
-        return Err(garde::Error::new("`inner` contains a value not equal to `needle`"));
+        return Err("`inner` contains a value not equal to `needle`".into());
     }
     Ok(())
 }))]
@@ -98,7 +98,7 @@ struct Multi<'a> {
 
 fn custom_validate_multi(multi: &Multi, ctx: &Context) -> Result<(), garde::Error> {
     if multi.field != ctx.needle {
-        return Err(garde::Error::new("`field` is not equal to `needle`"));
+        return Err("`field` is not equal to `needle`".into());
     }
     Ok(())
 }
