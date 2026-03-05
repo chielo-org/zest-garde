@@ -13,7 +13,23 @@ impl Check {
         cargo("clippy")
             .with_args(["--all-features", "--", "-D", "warnings"])
             .run()?;
-        cargo("deny").with_args(["--all-features", "check"]).run()?;
+        for suits in ["ui", "rules"] {
+            cargo("clippy")
+                .with_args([
+                    "--all-features",
+                    "-p",
+                    "garde",
+                    "--test",
+                    suits,
+                    "--",
+                    "-D",
+                    "warnings",
+                ])
+                .run()?;
+        }
+        cargo("deny")
+            .with_args(["--target", env!("TARGET"), "--all-features", "check"])
+            .run()?;
         cargo("udeps").with_arg("--all-features").run()?;
         cargo("pants").with_arg("--dev").run()?;
 

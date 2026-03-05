@@ -1,7 +1,6 @@
 use argp::FromArgs;
 
-use crate::util::get_workspace_manifest;
-use crate::util::{cargo, git, CommandExt as _};
+use crate::util::{cargo, get_workspace_manifest, git, CommandExt as _};
 use crate::Result;
 
 #[derive(FromArgs)]
