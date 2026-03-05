@@ -3,14 +3,14 @@ members = ["garde", "garde_derive"]
 resolver = "3"
 
 [workspace.package]
-version = "0.22.1"
+version = "0.23.0+chielo"
 edition = "2024"
 repository = "https://github.com/jprochazk/garde"
 license = "MIT OR Apache-2.0"
 
 [workspace.dependencies]
-garde = { path = "garde", version = "=0.22.1", default-features = false }
-garde_derive = { path = "garde_derive", version = "=0.22.1", default-features = false }
+garde = { path = "garde", version = "=0.23.0+chielo", default-features = false }
+garde_derive = { path = "garde_derive", version = "=0.23.0+chielo", default-features = false }
 
 [profile.dev.package]
 insta = { opt-level = 3 }
