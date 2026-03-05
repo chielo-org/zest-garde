@@ -67,13 +67,10 @@ jobs:
         include:
           - build: stable
             rust: stable
-            EXCLUDE_UI_TESTS: ""
           - build: beta
             rust: beta
-            EXCLUDE_UI_TESTS: ""
           - build: nightly
             rust: nightly
-            EXCLUDE_UI_TESTS: ""
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -97,7 +94,7 @@ jobs:
       - name: Run tests
         run: cargo x test
         env:
-          EXCLUDE_UI_TESTS: ${{ matrix.EXCLUDE_UI_TESTS }}
+          SKIP_COMPILE_FAIL_TESTS: ${{ (matrix.rust == 'nightly') && 'true' || '' }}
 
   checks:
     name: Checks

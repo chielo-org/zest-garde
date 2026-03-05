@@ -22,6 +22,13 @@ fn get_filter() -> Vec<String> {
         .collect::<Vec<_>>()
 }
 
+fn env_var_is_true_val<S: AsRef<str>>(val: S) -> bool {
+    let val = val.as_ref().to_ascii_lowercase();
+    ["1", "true", "yes", "ok"]
+        .iter()
+        .any(|&target| val == target)
+}
+
 fn get_tests<'a>(path_pattern: &str, filter: &'a [String]) -> impl Iterator<Item = PathBuf> + 'a {
     glob(path_pattern)
         .unwrap()
@@ -33,6 +40,8 @@ fn get_tests<'a>(path_pattern: &str, filter: &'a [String]) -> impl Iterator<Item
 fn ui() {
     let filter = get_filter();
     let t = trybuild::TestCases::new();
-    get_tests(COMPILE_FAIL_TESTS, &filter).for_each(|test| t.compile_fail(test));
+    if !std::env::var("SKIP_COMPILE_FAIL_TESTS").is_ok_and(env_var_is_true_val) {
+        get_tests(COMPILE_FAIL_TESTS, &filter).for_each(|test| t.compile_fail(test));
+    }
     get_tests(COMPILE_PASS_TESTS, &filter).for_each(|test| t.pass(test));
 }

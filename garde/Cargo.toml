@@ -7,6 +7,7 @@ license.workspace = true
 description = "Validation library"
 keywords = ["validation", "validate", "valid"]
 readme = "../README.md"
+exclude = ["tests", "wip"]
 
 [package.metadata.docs.rs]
 all-features = true
