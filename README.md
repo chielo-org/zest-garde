@@ -12,6 +12,7 @@ A Rust validation library
 - [Length modes](#length-modes)
 - [Inner type validation](#inner-type-validation)
 - [Newtypes](#newtypes)
+- [Renaming fields](#renaming-fields)
 - [Handling Option](#handling-option)
 - [Custom validation](#custom-validation)
 - [Context/Self access](#contextself-access)
@@ -271,6 +272,50 @@ User {
 ```
 
 Structs with the `#[garde(transparent)]` attribute may have more than one field, but there must be only one unskipped field. That means every field other than the one you wish to validate must be `#[garde(skip)]`.
+
+### Renaming fields
+
+You may rename a struct field using the `rename` attribute. This will change the name of the field
+in the generated report.
+
+```rust,ignore
+User {
+  #[garde(rename("userName"))]
+  usr: Username("")
+}.validate()
+
+"userName: length is lower than 3"
+```
+
+This can be done for tuples as well, which is helpful when you want to name enum variants since garde does
+not include enum variant names in the report path.
+
+```rust,ignore
+#[derive(Debug, garde::Validate)]
+enum LegalEntity {
+    LLC(
+        #[garde(length(min = 3, max = 100))]
+        #[garde(rename("Business"))]
+        String
+    ),
+    Trust(
+        #[garde(length(min = 3, max = 100))]
+        #[garde(rename("Trust"))]
+        String
+    )
+    Corp(
+        #[garde(length(min = 10, max = 100))]
+        #[garde(rename("Corporation"))]
+        String
+    )
+}
+
+LegalEntity::LLC("a").validate()
+"Business: length is lower than 3"
+
+LegalEntity::Trust("a").validate()
+"Trust: length is lower than 3"
+```
 
 ### Handling Option
 
