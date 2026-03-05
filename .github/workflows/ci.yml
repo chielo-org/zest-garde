@@ -36,7 +36,7 @@ jobs:
           node-version: 22
 
       - name: Install Rust
-        uses: dtolnay/rust-toolchain@v1
+        uses: dtolnay/rust-toolchain@master
         with:
           toolchain: stable
           targets: wasm32-unknown-unknown
@@ -63,22 +63,23 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        build: [pinned, stable, nightly]
+        build: [stable, beta, nightly]
         include:
-          - build: pinned
-            rust: 1.84.1
           - build: stable
             rust: stable
             EXCLUDE_UI_TESTS: ""
+          - build: beta
+            rust: beta
+            EXCLUDE_UI_TESTS: ""
           - build: nightly
             rust: nightly
-            EXCLUDE_UI_TESTS: "pattern_mismatched_types,non_unary_newtype"
+            EXCLUDE_UI_TESTS: ""
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Install Rust
-        uses: dtolnay/rust-toolchain@v1
+        uses: dtolnay/rust-toolchain@master
         with:
           toolchain: ${{ matrix.rust }}
 
