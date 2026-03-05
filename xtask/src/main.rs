@@ -4,7 +4,7 @@ mod crates;
 mod task;
 mod util;
 
-use std::io::{stderr, Write};
+use std::io::{Write, stderr};
 use std::process::ExitCode;
 
 use argp::FromArgs;

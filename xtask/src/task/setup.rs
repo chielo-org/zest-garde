@@ -1,7 +1,7 @@
 use argp::FromArgs;
 
-use crate::util::{cargo, has_cargo_subcmd, rustup, CommandExt as _};
 use crate::Result;
+use crate::util::{CommandExt as _, cargo, has_cargo_subcmd, rustup};
 
 const COMPONENTS: &[&str] = &["rustfmt", "clippy"];
 const TOOLS: &[&str] = &[

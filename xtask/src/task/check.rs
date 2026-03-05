@@ -1,7 +1,7 @@
 use argp::FromArgs;
 
-use crate::util::{cargo, CommandExt as _};
 use crate::Result;
+use crate::util::{CommandExt as _, cargo};
 
 #[derive(FromArgs)]
 #[argp(subcommand, name = "check", description = "Run all checks")]

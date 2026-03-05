@@ -1,7 +1,7 @@
 use argp::FromArgs;
 
-use crate::util::{cargo, get_workspace_manifest, git, CommandExt as _};
 use crate::Result;
+use crate::util::{CommandExt as _, cargo, get_workspace_manifest, git};
 
 #[derive(FromArgs)]
 #[argp(subcommand, name = "publish", description = "Publish to crates.io")]

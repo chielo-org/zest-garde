@@ -1,7 +1,7 @@
 use argp::FromArgs;
 
-use crate::util::{cargo, get_workspace_manifest, get_workspace_manifest_path, CommandExt as _};
 use crate::Result;
+use crate::util::{CommandExt as _, cargo, get_workspace_manifest, get_workspace_manifest_path};
 
 #[derive(FromArgs)]
 #[argp(subcommand, name = "version", description = "Bump crate versions")]
