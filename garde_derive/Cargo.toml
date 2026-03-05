@@ -1,10 +1,9 @@
 [package]
 name = "garde_derive"
 version.workspace = true
-rust-version.workspace = true
-edition = "2021"
-repository = "https://github.com/jprochazk/garde"
-license = "MIT OR Apache-2.0"
+edition.workspace = true
+repository.workspace = true
+license.workspace = true
 description = "Derive macros for garde"
 readme = "../README.md"
 
