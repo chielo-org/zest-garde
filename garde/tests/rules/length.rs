@@ -10,34 +10,44 @@ struct Test<'a> {
 
 #[test]
 fn length_valid() {
-    util::check_ok(&[
-        Test {
-            // 'a' * 10
-            field: "aaaaaaaaaa",
-            inner: &["aaaaaaaaaa"]
-        },
-        Test {
-            // 'a' * 100
-            field: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-            inner: &["aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"]
-        },
-    ], &())
+    util::check_ok(
+        &[
+            Test {
+                // 'a' * 10
+                field: "aaaaaaaaaa",
+                inner: &["aaaaaaaaaa"],
+            },
+            Test {
+                // 'a' * 100
+                field: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                inner: &[
+                    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                ],
+            },
+        ],
+        &(),
+    )
 }
 
 #[test]
 fn length_invalid() {
-    util::check_fail!(&[
-        Test {
-            // 'a' * 9
-            field: "aaaaaaaaa",
-            inner: &["aaaaaaaaa"]
-        },
-        Test {
-            // 'a' * 101
-            field: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-            inner: &["aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"]
-        },
-    ], &())
+    util::check_fail!(
+        &[
+            Test {
+                // 'a' * 9
+                field: "aaaaaaaaa",
+                inner: &["aaaaaaaaa"]
+            },
+            Test {
+                // 'a' * 101
+                field: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                inner: &[
+                    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                ]
+            },
+        ],
+        &()
+    )
 }
 
 #[derive(Debug, garde::Validate)]

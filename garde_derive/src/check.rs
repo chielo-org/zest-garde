@@ -6,7 +6,7 @@ use syn::spanned::Spanned;
 
 use crate::model;
 use crate::model::LengthMode;
-use crate::util::{default_ctx_name, MaybeFoldError};
+use crate::util::{MaybeFoldError, default_ctx_name};
 
 pub fn check(input: model::Input) -> syn::Result<model::Validate> {
     let model::Input {
@@ -64,13 +64,13 @@ pub fn check(input: model::Input) -> syn::Result<model::Validate> {
         }
     };
 
-    if let Some(span) = transparent {
-        if !is_unary_struct(&kind) {
-            error.maybe_fold(syn::Error::new(
-                span,
-                "transparent structs must have exactly one field",
-            ));
-        }
+    if let Some(span) = transparent
+        && !is_unary_struct(&kind)
+    {
+        error.maybe_fold(syn::Error::new(
+            span,
+            "transparent structs must have exactly one field",
+        ));
     }
 
     if let Some(error) = error {
@@ -255,22 +255,22 @@ fn check_field(field: model::Field, options: &model::Options) -> syn::Result<mod
         }
     };
 
-    if let Some(span) = field.skip {
-        if !field.is_empty() {
-            error.maybe_fold(syn::Error::new(
-                span,
-                "`skip` may not be combined with other rules",
-            ))
-        }
+    if let Some(span) = field.skip
+        && !field.is_empty()
+    {
+        error.maybe_fold(syn::Error::new(
+            span,
+            "`skip` may not be combined with other rules",
+        ))
     }
 
-    if let Some((span, _)) = field.dive {
-        if field.rule_set.inner.is_some() {
-            error.maybe_fold(syn::Error::new(
-                span,
-                "`dive` may not be combined with `inner`",
-            ))
-        }
+    if let Some((span, _)) = field.dive
+        && field.rule_set.inner.is_some()
+    {
+        error.maybe_fold(syn::Error::new(
+            span,
+            "`dive` may not be combined with `inner`",
+        ))
     }
 
     if let Some(error) = error {

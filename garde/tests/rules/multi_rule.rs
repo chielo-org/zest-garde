@@ -14,21 +14,23 @@ fn multi_rule_valid() {
         &[
             Test {
                 field: "test_test_test",
-                inner: &["test_test_test"]
+                inner: &["test_test_test"],
             },
             Test {
                 field: "test_some_other_ascii_but_less_than_100_chars",
-                inner: &["test_some_other_ascii_but_less_than_100_chars"]
+                inner: &["test_some_other_ascii_but_less_than_100_chars"],
             },
             Test {
                 // "test" + 'a' * 6
                 field: "testaaaaaa",
-                inner: &["testaaaaaa"]
+                inner: &["testaaaaaa"],
             },
             Test {
                 // "test" + 'a' * 96
                 field: "testaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-                inner: &["testaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"]
+                inner: &[
+                    "testaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                ],
             },
         ],
         &(),
@@ -55,7 +57,9 @@ fn multi_rule_invalid() {
             Test {
                 // 'a' * 101
                 field: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-                inner: &["aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"]
+                inner: &[
+                    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                ]
             },
         ],
         &()

@@ -2,7 +2,7 @@ use std::cell::RefCell;
 use std::str::FromStr as _;
 
 use proc_macro2::{Ident, TokenStream as TokenStream2};
-use quote::{format_ident, quote, quote_spanned, ToTokens};
+use quote::{ToTokens, format_ident, quote, quote_spanned};
 use syn::spanned::Spanned;
 
 use crate::model;

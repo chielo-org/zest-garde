@@ -6,7 +6,7 @@ pub mod validate;
 
 pub use error::{Error, Path, Report};
 #[cfg(feature = "derive")]
-pub use garde_derive::{select, Validate};
+pub use garde_derive::{Validate, select};
 pub use validate::{Unvalidated, Valid, Validate};
 
 pub type Result = ::core::result::Result<(), Error>;
@@ -17,8 +17,8 @@ pub mod external {
 
 #[doc(hidden)]
 pub mod util {
-    use crate::error::PathComponentKind;
     use crate::Path;
+    use crate::error::PathComponentKind;
 
     #[inline]
     pub fn __make_nested_path<'a, C: PathComponentKind + Clone + 'a>(

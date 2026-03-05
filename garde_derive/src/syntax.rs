@@ -10,7 +10,7 @@ use syn::{DeriveInput, Token, Type};
 
 use crate::model;
 use crate::model::List;
-use crate::util::{default_ctx_name, MaybeFoldError};
+use crate::util::{MaybeFoldError, default_ctx_name};
 
 pub fn parse(input: DeriveInput) -> syn::Result<model::Input> {
     let mut error = None;
@@ -76,7 +76,7 @@ fn parse_input_attr(attr: &syn::Attribute) -> syn::Result<model::Attr> {
             return Err(syn::Error::new(
                 attr.meta.span(),
                 "invalid attr style, expected parenthesized arguments",
-            ))
+            ));
         }
     };
 

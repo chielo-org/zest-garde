@@ -15,8 +15,8 @@
 use std::fmt::Display;
 use std::str::FromStr;
 
-use super::pattern::Matcher;
 use super::AsStr;
+use super::pattern::Matcher;
 use crate::error::Error;
 
 macro_rules! init_regex {

@@ -2,8 +2,8 @@
 
 use std::fmt::Debug;
 
-use crate::error::{Path, PathComponentKind};
 use crate::Report;
+use crate::error::{Path, PathComponentKind};
 
 /// The core trait of this crate.
 ///

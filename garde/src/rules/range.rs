@@ -77,7 +77,9 @@ macro_rules! impl_for {
     };
 }
 
-impl_for!(u8, u16, u32, u64, usize, u128, i8, i16, i32, i64, isize, i128, f32, f64);
+impl_for!(
+    u8, u16, u32, u64, usize, u128, i8, i16, i32, i64, isize, i128, f32, f64
+);
 
 #[cfg(feature = "rust_decimal")]
 impl_for!(rust_decimal::Decimal);
